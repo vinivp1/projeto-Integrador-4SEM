@@ -1,36 +1,3 @@
-import heapq
-
-def dijkstra(grafo, inicio, destino):
-    distancias = {nó: float('inf') for nó in grafo}
-    distancias[inicio] = 0
-    predecessores = {}
-
-    fila_prioridade = [(0, inicio)]
-
-    while fila_prioridade:
-        (dist_atual, nó_atual) = heapq.heappop(fila_prioridade)
-
-        if dist_atual > distancias[nó_atual]:
-            continue
-
-        for vizinho, peso in grafo[nó_atual].items():
-            distancia = dist_atual + peso
-            if distancia < distancias[vizinho]:
-                distancias[vizinho] = distancia
-                predecessores[vizinho] = nó_atual
-                heapq.heappush(fila_prioridade, (distancia, vizinho))
-
-    # Reconstruir o caminho
-    caminho = []
-    nó_atual = destino
-    while nó_atual != inicio:
-        caminho.append(nó_atual)
-        nó_atual = predecessores[nó_atual]
-    caminho.append(inicio)
-    caminho.reverse()
-
-    return distancias, caminho
-
 grafo = {
     'AC' : {'AC':0, 'AL':4119, 'AP':3194, 'AM':1444, 'BA':3768, 'CE':4.194, 'DF':3055, 'ES':3618, 'GO':2862, 'MA':3656, 'MT':2075, 'MS':2494, 'MG':3489, 'PA':3379, 'PB':4343, 'PR':3616, 'PE':4252, 'PI':3670, 'RJ':3678, 'RN':4526, 'RS':3787, 'RO':510, 'RR':2959, 'SC':3694, 'SP':3451, 'SE':4000, 'TO':2885},
     'AL' : {'AC': 4119, 'AL':0, 'AP':2171, 'AM':4666, 'BA':601, 'CE':1070, 'DF':1792, 'ES':1367, 'GO':2067, 'MA':1655, 'MT':2815, 'MS':2697, 'MG':1664, 'PA':2425, 'PB':390, 'PR':2720, 'PE':285, 'PI':1216, 'RJ':1932, 'RN':695, 'RS':3402, 'RO':3929, 'RR':5309, 'SC':2917, 'SP':2153, 'SE':294, 'TO':1841},
@@ -60,9 +27,3 @@ grafo = {
     'TO' : {'AC': 1487, 'AL': 1746, 'AP': 1504, 'AM': 2695, 'BA': 1467, 'CE': 1595, 'DF': 874, 'ES': 1754, 'GO': 874, 'MA': 1452, 'MT': 1289, 'MS': 1589, 'MG': 1486, 'PA': 1286, 'PB': 2047, 'PR': 1908, 'PE': 1947, 'PI': 1029, 'RJ': 1644, 'RN': 2198, 'RS': 2225, 'RO': 1654, 'RR': 3126, 'SC': 2079, 'SP': 1786, 'SE': 1624, 'DF': 874},
     'DF' : {'AC': 3115, 'AL': 1729, 'AP': 2073, 'AM': 3495, 'BA': 1446, 'CE': 2206, 'ES': 1232, 'GO': 209, 'MA': 2115, 'MT': 1132, 'MS': 1134, 'MG': 716, 'PA': 2116, 'PB': 2220, 'PR': 1366, 'PE': 2120, 'PI': 1783, 'RJ': 1169, 'RN': 2365, 'RS': 2015, 'RO': 2309, 'RR': 3987, 'SC': 1673, 'SP': 1015, 'SE': 1658, 'TO': 874}
 }
-
-inicio = 'SP'
-destino = 'BA'
-distancias, caminho_mais_curto = dijkstra(grafo, inicio, destino)
-print(f"Distância mais curta de {inicio} para {destino}: {distancias[destino]}")
-print(f"Caminho mais curto: {caminho_mais_curto}")
