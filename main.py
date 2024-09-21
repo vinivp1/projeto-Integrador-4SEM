@@ -34,8 +34,8 @@ def dijkstra(grafo, inicio, destino):
 
 grafo = grafo
 
-inicio = 'SP'
-destino = 'BA'
+inicio = 'AC'
+destino = 'RS'
 distancias, caminho_mais_curto = dijkstra(grafo, inicio, destino)
 print(f"Distância mais curta de {inicio} para {destino}: {distancias[destino]}km")
 print(f"Caminho mais curto: {caminho_mais_curto}")
