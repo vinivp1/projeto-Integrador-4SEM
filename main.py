@@ -21,7 +21,6 @@ def dijkstra(grafo, inicio, destino):
                 predecessores[vizinho] = nó_atual
                 heapq.heappush(fila_prioridade, (distancia, vizinho))
 
-    # Reconstruir o caminho
     caminho = []
     nó_atual = destino
     while nó_atual != inicio:
@@ -34,8 +33,14 @@ def dijkstra(grafo, inicio, destino):
 
 grafo = grafo
 
-inicio = 'AC'
-destino = 'RS'
+print("PROGRAMA CAMINHO CERTO")
+print("Estados: Acre (AC), Alagoas (AL), Amapá (AP), Amazonas (AM), Bahia (BA), Ceará (CE), Distrito Federal (DF), Espírito Santo (ES),"
+      "\n Goiás (GO), Maranhão (MA), Mato Grosso (MT), Mato Grosso do Sul (MS), Minas Gerais (MG), Pará (PA), Paraíba (PB), Paraná (PR), Pernambuco (PE),"
+      "\n Piauí (PI) ,Rio de Janeiro (RJ), Rio Grande do Norte (RN), Rio Grande do Sul (RS), Rondônia (RO), Roraima (RR), Santa Catarina (SC), São Paulo (SP),"
+      "\n Sergipe (SE), Tocantins (TO)")
+
+inicio = input("\nEscolha o estado para o início da viagem?").upper().strip()
+destino = input("Escolha o estado para a chegada da viagem?").upper().strip()
 distancias, caminho_mais_curto = dijkstra(grafo, inicio, destino)
-print(f"Distância mais curta de {inicio} para {destino}: {distancias[destino]}km")
+print(f"\nDistância mais curta de {inicio} para {destino}: {distancias[destino]}km")
 print(f"Caminho mais curto: {caminho_mais_curto}")
